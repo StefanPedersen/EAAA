@@ -1,0 +1,33 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoViewPage<ContentModels.ProjectItem>
+@using ContentModels = Umbraco.Web.PublishedModels;
+@{
+	Layout = "layout.cshtml";
+}
+<div class="row">
+    <div class="col-md-12">
+        <div class="hero-banner" style="background-color:orange">
+            <div class="container">
+            <h1 class="hero-unit">@Model.ProjectTitle</h1>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="background" style="background-color:black">
+            <div class="container blackground">
+                <span>Status:</span> @Model.ProjectStatus
+            </div>
+            <div class="container blackground">
+                @Model.ProjectDescription
+            </div>
+        
+        </div>
+
+    </div>
+</div>
+
+  

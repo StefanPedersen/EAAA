@@ -1,0 +1,58 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoViewPage
+@{
+	Layout = null;
+}
+<head>
+ 
+<title>
+    @{
+        if(@Model.Value("PageTitle")==null)
+        {
+          @Model.Name        
+        }
+        else{
+          @Model.Value("PageTitle")
+        }
+    }
+    
+</title>
+        <meta name="description" content="@Model.Value("MetaDescription")" />
+        <meta name="keywords" content="Umbraco">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="~/Content/bootstrap-grid.css" rel="stylesheet" />
+        <link href="~/Content/bootstrap-grid.min.css" rel="stylesheet" />
+        <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+        <link href="~/Content/bootstrap.css" rel="stylesheet" />
+        <script src="~/Scripts/jquery-3.4.1.js"></script>
+        <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+        <link href="~/css/style.css" rel="stylesheet" />
+       
+      
+        <script type="text/javascript" src="~/Scripts/bootstrap.min.js"></script>
+
+        <script src="~/Scripts/jquery.validate.min.js"></script>
+        <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+        
+    </head>
+
+    <body>
+    
+ @Umbraco.RenderMacro("dropDownMenu")
+  
+        <main>
+            @RenderBody()
+        </main>
+        <div class="row footer">
+      <div class="container footer">
+        <footer>
+
+            <p>Stefan Pedersen - Aarhus Web Development Coporation</p>
+            
+        </footer>
+        </div>
+</div>
+    </body>
+
+   
+
+</html>

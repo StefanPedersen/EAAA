@@ -1,0 +1,62 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoViewPage<ContentModels.ArticlesOverview>
+@using ContentModels = Umbraco.Web.PublishedModels;
+@{
+	Layout = "layout.cshtml";
+}
+<div class="row">
+    <div class="col-md-12">
+        <div class="hero-banner" style="background-color:orange">
+            <div class="container">
+            <h1 class="hero-unit">
+            @Model.ArticleTitle</h1>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="show-articles-background">
+            <div class="container">
+     
+        
+                    @{
+                    	var selection = Umbraco.Content(Guid.Parse("f6c45571-7fd4-4763-9488-33543c7023ab"))
+                        .ChildrenOfType("articleItem")
+                        .Where(x => x.IsVisible());
+                    }
+                    <ul style="float:left;">
+                    	@foreach (var item in selection)
+                    	{
+                    		<li>
+                    			<article class="col-md-3" >
+                                <div class="articletitle"><a href="@item.Url">@item.Name</a></div>
+                                <div class="articlepreview">@Html.Raw(@item.Value("articleContent").ToString().Truncate(100)) <a href="@item.Url">Read More..</a></div>
+                                </article>
+                    		</li>
+                    	}
+                    </ul>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="background" style="background-color:black">
+            <div class="container blackground">
+         
+            @Model.ArticlesBodyText
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+  

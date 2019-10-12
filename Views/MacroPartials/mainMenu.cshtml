@@ -1,0 +1,56 @@
+﻿@inherits Umbraco.Web.Macros.PartialViewMacroPage
+@using Umbraco.Web
+
+
+@*
+    This snippet displays a list of links of the pages immediately under the top-most page in the content tree.
+    This is the home page for a standard website.
+    It also highlights the current active page/section in the navigation with the CSS class "current".
+*@
+
+@{ 
+
+    var children = Model.Content.Root().Children.Where(x => x.IsVisible()).ToArray(); 
+    var sub-children = Model.Content.Root().Children.Where(x => x.IsVisible()).Descendants().ToArray();
+
+}
+
+       <nav class="navbar navbar-expand-lg navbar-light">
+            <div class="container">
+            <a class="navbar-brand" style="color:white;"href="/">Home</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+
+@if (children.Length > 0)
+{
+    <ul class="navbar-nav">
+        @foreach (var child in children)
+        {
+            if(child has sub-children){
+            
+            <li class="nav-item @(child.IsAncestorOrSelf(Model.Content) ? "current" : null)">
+                <a class="nav-link" href="@child.Url">@child.Name</a>
+            </li>
+            
+            foreach (var subchild in sub-children){
+            <li>
+                 <a class="nav-link" href="@subchild.Url">@subchild.Name</a>
+            </li>
+            
+            }
+            else{
+            
+            <li class="nav-item @(child.IsAncestorOrSelf(Model.Content) ? "current" : null)">
+                <a class="nav-link" href="@child.Url">@child.Name</a>
+            </li>
+            }
+        }
+        }
+    </ul>
+}
+
+    </div>
+            </div>
+        </nav>
